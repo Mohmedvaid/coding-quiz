@@ -11,3 +11,8 @@ h1 {
     margin-right: 200px;
     margin-left: 200px;
 }
+
+#result{
+    font-size: 60px;
+    color: red;
+}
