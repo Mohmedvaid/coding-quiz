@@ -50,9 +50,18 @@ $(document).ready(function () {
                     $('#options').empty()
                     score++;
 
+                    setTimeout(function(){
+                        $("#result").empty();
+                     }, 1000);
+
                 } else {
                     $("#result").text("you lose!")
                     $('#options').empty()
+
+                    setTimeout(function(){
+                        $("#result").empty();
+                     }, 1000);
+
 
 
                 }    
@@ -65,12 +74,15 @@ $(document).ready(function () {
 
             })
         }
+        
+        
 
         let questionIndex = 0;
 
         function renderquestion(){
             let currentQuestion = questionsArr[questionIndex].q;
             question.text(currentQuestion);
+
                 for (var j =0; j<questionsArr[i].a.length; j++){
                     $("#options").append(`<button>${questionsArr[questionIndex].a[j]}</button>`);
                 }
