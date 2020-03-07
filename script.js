@@ -1,83 +1,89 @@
 $(document).ready(function () {
 
-    var questions = [{
-            q: "This is question 1.",
-            a: ["aaaa", "bbbb", "cccc"],
+    var questionsArr = [{
+            q: "Question 1",
+            a: ["aaaa", "bbbb", "cccc", "dddd"],
             ans: "aaaa"
         },
         {
-            q: "This is question 2.",
-            a: ["aaaa", "bbbb", "cccc"],
-            ans: "cccc"
+            q: "Question 2.",
+            a: ["eeee", "ffff", "gggg", "hhhh"],
+            ans: "hhhh"
+        },
+        {
+            q: "Question 3.",
+            a: ["aaaa", "bbbb", "cccc", "dddd"],
+            ans: "dddd"
+        },
+
+        {
+            q: "Question 4.",
+            a: ["aaaa", "bbbb", "cccc", "dddd"],
+            ans: "dddd"
+        },
+
+        {
+            q: "Question 5.",
+            a: ["aaaa", "bbbb", "cccc", "dddd"],
+            ans: "dddd"
         }
+
 
     ];
-    var score = 0;
-    var questionIndex = 0;
-    var options = "";
-
+    var i = 0;
 
     $(".startbt").on("click", function () {
-        //currentQuestion = questions[questionIndex].q
-        $('.container-main1').hide();
-        $('.container-main2').show();
 
-        var j = 0;
-        var printQ = function () {
-            for (var i = 0; i < questions[j].a.length; i++) {
-                $('#question').html(questions[j].q)
-                $('#options').append(`<button>${questions[j].a[i]}</button>`)
-            }
+        $('.container-main1').hide()
+        $('.container-main2').show()
+
+        title = $('#gameTitle')
+        question = $('#question')
+        options = $('#options')
+        var score = 0;
+
+        function check(){
+            $('#options').on('click' ,function(event){
+                click = event.target;
+                if (click.innerHTML == questionsArr[questionIndex].ans) {
+                    $("#result").text("you won")
+                    $('#options').empty()
+                    score++;
+
+                } else {
+                    $("#result").text("you lose!")
+                    $('#options').empty()
+
+
+                }    
+                
+                if(questionIndex < questionsArr.length-1){
+                    questionIndex++;
+                    renderquestion();
+                    //$("#result").empty();
+                }
+
+            })
         }
-        printQ();
 
-        $('button').on('click', function (event) {
-            var click = event.target
-            if (click.innerHTML != questions[j].ans) {
-                $("#result").text("you lose")
-                j++
-                $('#options').empty()
+        let questionIndex = 0;
 
-                printQ()
+        function renderquestion(){
+            let currentQuestion = questionsArr[questionIndex].q;
+            question.text(currentQuestion);
+                for (var j =0; j<questionsArr[i].a.length; j++){
+                    $("#options").append(`<button>${questionsArr[questionIndex].a[j]}</button>`);
+                }
 
-            } else {
-                $("#result").text("you win!")
-                j++
-                $('#options').empty()
-                printQ()
-            }
-        })
+        }
+
+        renderquestion();
+        check()
+
+
+
 
     })
 
-
-
-
-    // inside here create buttons, 
-    // set button text to a,b,c inside array
-    // set onclick events
-
-
-    //$("#questionBox").append(questionDiv)
-
-
-
-
-
-
-    // check to see if the text or data within the button of the event clicked !== question[questionIndex].ans then display or alert "WRONG" and move to next question. that is when you would do questionIndex++
-
-
-
-
-
-
-
-
-    // display question
-    // set timer
-    // if timer runs out, pull next question
-
-
-
 })
+
